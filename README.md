@@ -3,12 +3,15 @@ DQN (Deep Q-Network) es un algoritmo de aprendizaje por refuerzo (reinforcement 
 
 Cómo funciona:
 
-Usa una red neuronal para aproximar la función de valor-acción <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="tre">,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> Q(s, a) </annotation></semantics></math>, que estima la recompensa esperada al tomar la acción <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex"> a </annotation></semantics></math> en el estado <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex"> s </annotation></semantics></math> y seguir una política óptima.
+Usa una red neuronal para aproximar la función de valor-acción ![imagen](https://github.com/user-attachments/assets/223bc56f-566f-409e-866d-a5a7c3d1ce18)
+, que estima la recompensa esperada al tomar la acción <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex"> a </annotation></semantics></math> en el estado <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex"> s </annotation></semantics></math> y seguir una política óptima.
 Componentes clave:
 
-Replay Buffer: Almacena experiencias <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>r</mi><mo separator="true">,</mo><msup><mi>s</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s, a, r, s')</annotation></semantics></math> para muestrear aleatoriamente y romper correlaciones temporales.
+Replay Buffer: Almacena experiencias ![Uploading imagen.png…]()
+ para muestrear aleatoriamente y romper correlaciones temporales.
 Target Network: Una copia de la red principal que estabiliza los objetivos de Q-values durante el entrenamiento.
-Exploración: Usa una estrategia como <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math>-greedy para equilibrar exploración (acciones aleatorias) y explotación (acciones óptimas).
+Exploración: Usa una estrategia como ![imagen](https://github.com/user-attachments/assets/931c0010-a7df-414a-9a55-8142e1428889)
+ para equilibrar exploración (acciones aleatorias) y explotación (acciones óptimas).
 
 
 Actualiza los pesos de la red minimizando la pérdida entre los Q-values predichos y los objetivos calculados (usando la ecuación de Bellman).
@@ -17,7 +20,7 @@ Actualiza los pesos de la red minimizando la pérdida entre los Q-values predich
 Por qué se usa:
 
 Es efectivo en entornos con espacios de estados grandes (como imágenes o vectores continuos) donde los métodos tabulares de Q-Learning son inviables.
-Ha demostrado éxito en tareas como juegos de Atari, robótica, y problemas de control como CartPole-v1 (el entorno usado en tu programa).
+Ha demostrado éxito en tareas como juegos de Atari, robótica, y problemas de control como CartPole-v1.
 Permite aprender políticas complejas sin necesidad de un modelo explícito del entorno.
 
 
@@ -30,7 +33,8 @@ Uso en el programa:
 El programa usa el entorno CartPole-v1 de Gymnasium (env = gym.make("CartPole-v1")) para simular un poste equilibrado sobre un carro móvil.
 CartPole-v1:
 
-Estado: Un vector de 4 dimensiones <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>x</mi><mo separator="true">,</mo><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo separator="true">,</mo><mi>θ</mi><mo separator="true">,</mo><mover accent="true"><mi>θ</mi><mo>˙</mo></mover><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[x, \dot{x}, \theta, \dot{\theta}]</annotation></semantics></math> (posición del carro, velocidad, ángulo del poste, velocidad angular).
+Estado: Un vector de 4 dimensiones ![imagen](https://github.com/user-attachments/assets/821fdfe6-0819-4074-9a8c-b1616aa48109)
+ (posición del carro, velocidad, ángulo del poste, velocidad angular).
 Acciones: 2 discretas (mover el carro a la izquierda o derecha).
 Recompensa: +1 por paso mientras el poste esté equilibrado (hasta 500 pasos o hasta que falle).
 Objetivo: Maximizar la recompensa acumulada manteniendo el poste vertical el mayor tiempo posible.
@@ -54,10 +58,10 @@ Depuración: Proporciona métricas claras (recompensas, estados) para evaluar el
 
 
 
-Contexto en tu programa
+Contexto en el programa
 
 DQN: Implementado en hdqnt.cpp (DQNModel, DQNService) para aprender una política que equilibre el poste. Usa una red neuronal, replay buffer, y target network para optimizar los Q-values.
-Gymnasium: Usado en dqn_example.py para:
+Gymnasium: Usado en dqn_test.py para:
 
 Crear el entorno CartPole-v1.
 Generar trayectorias (estados, acciones, recompensas) que alimentan el entrenamiento del DQN.
@@ -70,4 +74,4 @@ Resumen final
 
 DQN: Es el cerebro del agente, aprendiendo a predecir qué acciones maximizan la recompensa en CartPole mediante una red neuronal y técnicas como replay buffer y target network.
 Gymnasium: Es el "mundo" donde el agente aprende, proporcionando el entorno CartPole-v1 para simular la tarea de equilibrar el poste y generar datos de entrenamiento.
-Resultado: Tu programa logra un promedio de ~534.4, indicando que el DQN, entrenado con Gymnasium, equilibra el poste durante los 500 pasos máximos de manera consistente.
+Resultado: El programa logra un promedio de ~534.4, indicando que el DQN, entrenado con Gymnasium, equilibra el poste durante los 500 pasos máximos de manera consistente.
