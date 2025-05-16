@@ -4,13 +4,13 @@ DQN (Deep Q-Network) es un algoritmo de aprendizaje por refuerzo (reinforcement 
 Cómo funciona:
 
 Usa una red neuronal para aproximar la función de valor-acción Q(s,a)
-, que estima la recompensa esperada al tomar la acción a,s  y seguir una política óptima.
+, que estima la recompensa esperada al tomar la acción a en el estado s  y seguir una política óptima.
 Componentes clave:
 
 Replay Buffer: Almacena experiencias ![imagen](https://github.com/user-attachments/assets/223bc56f-566f-409e-866d-a5a7c3d1ce18)
  para muestrear aleatoriamente y romper correlaciones temporales.
 Target Network: Una copia de la red principal que estabiliza los objetivos de Q-values durante el entrenamiento.
-Exploración: Usa una estrategia como ![imagen](https://github.com/user-attachments/assets/931c0010-a7df-414a-9a55-8142e1428889)
+Exploración: Usa una estrategia como ![imagen](https://github.com/user-attachments/assets/73e485c0-56e6-4bbd-b7f1-3fb500c4e228)
  para equilibrar exploración (acciones aleatorias) y explotación (acciones óptimas).
 
 
